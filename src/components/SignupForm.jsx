@@ -17,10 +17,31 @@ function SignupForm({ isFormOpen, handleForm }) {
   function onFormChange() {
     handleForm(!isFormOpen);
   }
+  function validateInput({ name, email, contact, username, password }) {
+    if (!name || !password || !email || !contact || !username) return false;
+    if (
+      username.length < 2 ||
+      email.length < 2 ||
+      contact.length != 10 ||
+      password.length < 2
+    ) {
+      return false;
+    }
+    if (!email.includes("@")) {
+      return false;
+    }
+    return true;
+  }
   function handleSubmit(e) {
     e.preventDefault();
+    if (validateInput(userData)) {
+      console.log("Signup sucessful");
+    } else {
+      alert("Invalid value entered!");
+    }
     console.log(userData);
   }
+
   return (
     <>
       <form className="SignupForm" method="POST" onSubmit={handleSubmit}>
@@ -44,7 +65,7 @@ function SignupForm({ isFormOpen, handleForm }) {
             onChange={handleChange}
           />
           <input
-            type="text"
+            type="password"
             name="password"
             placeholder="Set your password"
             onChange={handleChange}
