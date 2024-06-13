@@ -1,0 +1,16 @@
+.signup-create_account {
+  color: white;
+  min-width: 45.5rem;
+}
+.create_account_text {
+  font-size: 2.4rem;
+  margin-bottom: 1.6rem;
+}
+.create_account-btns {
+  align-items: stretch;
+  gap: 2.4rem;
+}
+.create_account-btns p {
+  align-self: center;
+  font-size: 2rem;
+}

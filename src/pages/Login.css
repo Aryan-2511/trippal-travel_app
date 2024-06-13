@@ -4,3 +4,20 @@
   min-width: 92.6rem;
   padding: 3.2rem 4rem;
 }
+.login-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.4rem;
+}
+.login-input input {
+  min-width: 45%;
+}
+.login-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.login-btns Button {
+  min-width: 45%;
+}

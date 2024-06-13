@@ -2,53 +2,49 @@ import "./Signup.css";
 import Logo from "../components/Logo";
 import BigLogo from "../components/BigLogo";
 import Button from "../utils/Button";
-import GoogleLogo from "../utils/GoogleLogo";
 import { useState } from "react";
 import SignupForm from "../components/SignupForm";
+import SignupCreateAccountButtons from "../components/SignupCreateAccountButtons";
+import Login from "./Login";
 // import Loader from "../components/Loader";
 
 function Signup() {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  function handleClick() {
+  const [isLoginActive, setIsLoginActive] = useState(true);
+
+  function handleFormOpen() {
     setIsFormOpen(true);
+  }
+  function handleIsLoginActive(val) {
+    setIsLoginActive(val);
   }
   return (
     <div className="Signup">
       <div className="signup-nav">
         <Logo width={70} height={38} />
-        <Button variation="primary">Login &rarr;</Button>
+        <Button variation="primary" onClick={() => handleIsLoginActive(true)}>
+          Login &rarr;
+        </Button>
       </div>
       <div className="signup-main flex-column-center">
         <div className="signup-header flex-column-center">
           <h2 className="signup-header-heading">
             Sign up and Let Your <span>Adventures</span> Begin!
           </h2>
-          {isFormOpen ? (
+          {isFormOpen && !isLoginActive ? (
             <SignupForm isFormOpen={isFormOpen} handleForm={setIsFormOpen} />
           ) : (
             <BigLogo />
           )}
         </div>
-
-        <div className="signup-create_account flex-column">
-          {isFormOpen || (
-            <p className="create_account_text">
-              Let&apos;s start by creating your account first
-            </p>
-          )}
-          <div className="create_account-btns flex-column">
-            {isFormOpen || (
-              <Button size="large" onClick={() => handleClick()}>
-                Signup
-              </Button>
-            )}
-            <p>or</p>
-            <Button size="large" variation="secondary">
-              <GoogleLogo />
-              Continue with Google
-            </Button>
-          </div>
-        </div>
+        {isLoginActive ? (
+          <Login isLoginActive={isLoginActive} onLogin={handleIsLoginActive} />
+        ) : (
+          <SignupCreateAccountButtons
+            isFormOpen={isFormOpen}
+            onFormOpen={handleFormOpen}
+          />
+        )}
       </div>
     </div>
   );
