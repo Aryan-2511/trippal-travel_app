@@ -21,7 +21,7 @@ function Signup() {
       <div className="signup-main flex-column-center">
         <div className="signup-header flex-column-center">
           <h2 className="signup-header-heading">
-            Sign up and Let Your <span>Adventures</span> Begin!
+            Sigt up and Let Your <span>Adventures</span> Begin!
           </h2>
           {isFormOpen ? (
             <SignupForm isFormOpen={isFormOpen} handleForm={setIsFormOpen} />
