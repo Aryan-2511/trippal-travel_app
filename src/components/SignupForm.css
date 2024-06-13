@@ -1,18 +1,28 @@
 .SignupForm {
-  min-width: 92.6rem;
-  /* max-height: 38rem; */
-  padding: 3.2rem 4rem;
-  color: #4a4a4a;
   background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2rem;
+  min-width: 92.6rem;
+  padding: 3.2rem 4rem;
+}
+
+.form-inputs {
+  color: #0a2e36;
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(2, 1fr);
-  /* justify-content: center; */
   align-items: center;
   justify-items: stretch;
   row-gap: 1.54rem;
   column-gap: 9.2rem;
-  border-radius: 2rem;
+}
+.form-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.form-btns Button {
+  min-width: 45%;
+  margin-top: 1.51rem;
 }
 
 form input {
