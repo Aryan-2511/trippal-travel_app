@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./SignupForm.css";
 import Button from "../utils/Button";
+import { registerUser } from "../services/api";
 
 function SignupForm({ isFormOpen, handleForm }) {
   const [userData, setUserData] = useState({
@@ -11,6 +12,8 @@ function SignupForm({ isFormOpen, handleForm }) {
     password: "",
   });
 
+  const [error,setError] = useState("");
+  const [success,setSuccess] = useState("");
   function handleChange(e) {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   }
@@ -32,14 +35,23 @@ function SignupForm({ isFormOpen, handleForm }) {
     }
     return true;
   }
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (validateInput(userData)) {
-      console.log("Signup sucessful");
+      try {
+        const response = await registerUser(userData);
+        setSuccess("Signup successful! You can now log in.");
+        setError("");
+        console.log("Signup successful:", response);
+      } catch (error) {
+        setError("Signup failed. Please try again.");
+        setSuccess("");
+        console.error("Signup failed:", error);
+      }
     } else {
-      alert("Invalid value entered!");
+      setError("Invalid value entered!");
+      setSuccess("");
     }
-    console.log(userData);
   }
 
   return (
