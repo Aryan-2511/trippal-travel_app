@@ -22,9 +22,11 @@ function Signup() {
     <div className="Signup">
       <div className="signup-nav">
         <Logo width={70} height={38} />
-        <Button variation="primary" onClick={() => handleIsLoginActive(true)}>
-          Login &rarr;
-        </Button>
+        {isLoginActive || (
+          <Button variation="primary" onClick={() => handleIsLoginActive(true)}>
+            Login &rarr;
+          </Button>
+        )}
       </div>
       <div className="signup-main flex-column-center">
         <div className="signup-header flex-column-center">
