@@ -1,8 +1,8 @@
 import "./Signup.css";
+import { useState } from "react";
 import Logo from "../components/Logo";
 import BigLogo from "../components/BigLogo";
 import Button from "../utils/Button";
-import { useState } from "react";
 import SignupForm from "../components/SignupForm";
 import SignupCreateAccountButtons from "../components/SignupCreateAccountButtons";
 import Login from "./Login";
@@ -10,7 +10,7 @@ import Login from "./Login";
 
 function Signup() {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [isLoginActive, setIsLoginActive] = useState(true);
+  const [isLoginActive, setIsLoginActive] = useState(false);
 
   function handleFormOpen() {
     setIsFormOpen(true);

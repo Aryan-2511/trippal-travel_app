@@ -7,7 +7,7 @@ function Login({ onLogin }) {
     username: "",
     password: "",
   });
-  const [error,setError] = useState("");
+  const [error, setError] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -41,6 +41,7 @@ function Login({ onLogin }) {
           type="text"
           required
           name="username"
+          value={credentials.username}
           placeholder="Enter your username"
           onChange={handleInput}
         />
@@ -48,6 +49,7 @@ function Login({ onLogin }) {
           type="password"
           required
           name="password"
+          value={credentials.password}
           placeholder="Enter your password"
           onChange={handleInput}
         />
