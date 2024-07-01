@@ -1,16 +1,18 @@
 import "./Signup.css";
+import { useState } from "react";
 import Logo from "../components/Logo";
 import BigLogo from "../components/BigLogo";
-import Button from "../utils/Button";
-import { useState } from "react";
+import Button from "../ui/Button";
 import SignupForm from "../components/SignupForm";
 import SignupCreateAccountButtons from "../components/SignupCreateAccountButtons";
-import Login from "./Login";
+import Login from "../components/Login";
 // import Loader from "../components/Loader";
+
+import { HiOutlineArrowRight } from "react-icons/hi2";
 
 function Signup() {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [isLoginActive, setIsLoginActive] = useState(true);
+  const [isLoginActive, setIsLoginActive] = useState(false);
 
   function handleFormOpen() {
     setIsFormOpen(true);
@@ -22,9 +24,12 @@ function Signup() {
     <div className="Signup">
       <div className="signup-nav">
         <Logo width={70} height={38} />
-        <Button variation="primary" onClick={() => handleIsLoginActive(true)}>
-          Login &rarr;
-        </Button>
+        {isLoginActive || (
+          <Button variation="primary" onClick={() => handleIsLoginActive(true)}>
+            Login
+            <HiOutlineArrowRight />
+          </Button>
+        )}
       </div>
       <div className="signup-main flex-column-center">
         <div className="signup-header flex-column-center">

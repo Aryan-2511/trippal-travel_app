@@ -1,4 +1,4 @@
-function Logo({ width, height }) {
+function Logo({ width = 70, height = 38 }) {
   const w = width + "";
   const h = height + "";
   const vB = `0 0 ${w} ${h}`;
