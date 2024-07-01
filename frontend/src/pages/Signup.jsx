@@ -2,11 +2,13 @@ import "./Signup.css";
 import { useState } from "react";
 import Logo from "../components/Logo";
 import BigLogo from "../components/BigLogo";
-import Button from "../utils/Button";
+import Button from "../ui/Button";
 import SignupForm from "../components/SignupForm";
 import SignupCreateAccountButtons from "../components/SignupCreateAccountButtons";
-import Login from "./Login";
+import Login from "../components/Login";
 // import Loader from "../components/Loader";
+
+import { HiOutlineArrowRight } from "react-icons/hi2";
 
 function Signup() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -24,7 +26,8 @@ function Signup() {
         <Logo width={70} height={38} />
         {isLoginActive || (
           <Button variation="primary" onClick={() => handleIsLoginActive(true)}>
-            Login &rarr;
+            Login
+            <HiOutlineArrowRight />
           </Button>
         )}
       </div>

@@ -1,6 +1,6 @@
 import "./SignupForm.css";
 import { useState } from "react";
-import Button from "../utils/Button";
+import Button from "../ui/Button";
 import { registerUser } from "../services/api";
 import useLoading from "../hooks/useLoading";
 import Loader from "../components/Loader";

@@ -1,6 +1,6 @@
 import "./SignupCreateAccountButtons.css";
-import Button from "../utils/Button";
-import GoogleLogo from "../utils/GoogleLogo";
+import Button from "../ui/Button";
+import GoogleLogo from "../ui/GoogleLogo";
 
 function SignupCreateAccount({ isFormOpen, onFormOpen }) {
   return (
