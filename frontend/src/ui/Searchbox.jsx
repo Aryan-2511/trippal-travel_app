@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import styled from "styled-components";
 
@@ -27,16 +28,43 @@ const StyledInput = styled.input`
   flex-basis: 90%;
 `;
 
-function Searchbox() {
+function Searchbox({ onSearch, searchResult, loading }) {
+  // controlled search input
+  const [search, setSearch] = useState("");
+  function handleInputChange(e) {
+    setSearch(e.target.value);
+  }
+
+  const handleSearch = async () => {
+    if (!search.trim()) {
+      alert("Please enter a city name.");
+      return;
+    }
+
+    onSearch(search.trim());
+    setSearch("");
+  };
   return (
     <StyledSearchBox className="search-box">
-      <HiMagnifyingGlass size={24} className="search-icon" />
+      <HiMagnifyingGlass
+        size={24}
+        className="search-icon"
+        onClick={handleSearch}
+      />
       <StyledInput
         type="text"
         id="search-input"
         name="search"
         placeholder="Search for destinations..."
+        value={search}
+        onChange={handleInputChange}
+        onKeyPress={(e) => {
+          if (e.key === "Enter") {
+            handleSearch();
+          }
+        }}
       />
+      {/* {console.log(searchResult)} */}
     </StyledSearchBox>
   );
 }

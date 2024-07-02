@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Navbar from "../components/Navbar";
 
 const StyledAppLayout = styled.div`
+  overflow-y: scroll;
   height: 100vh;
 `;
 const Main = styled.main`
