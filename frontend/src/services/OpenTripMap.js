@@ -10,3 +10,15 @@ export const fetchFamousPlaces = async (city) => {
         throw error;
     }
 };
+
+export const fetchPlaceDetails = async (xid) => {
+    try {
+        const response = await axios.get('/api/places/place-details', {
+            params: { xid }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching place details:', error);
+        throw error;
+    }
+};

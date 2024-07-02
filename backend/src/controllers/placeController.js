@@ -15,5 +15,15 @@ router.post('/famous-places',async (req, res) => {
         res.status(500).json({ message: 'Error retrieving famous places', error });
     }
 });
+router.post('/place-details', async (req, res) => {
+    const { xid } = req.query;
+
+    try {
+        const placeDetails = await openTripMapService.getPlaceDetails(xid);
+        res.json(placeDetails);
+    } catch (error) {
+        res.status(500).json({ message: 'Error retrieving place details', error });
+    }
+});
 
 module.exports = router;
