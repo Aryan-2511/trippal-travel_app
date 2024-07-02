@@ -1,9 +1,13 @@
 import styled from "styled-components";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Searchbox from "../ui/Searchbox";
-// import apiPlaceDetails from "../services/apiPlaceDetails";
 import { placesData } from "../../public/data/dummyData";
 import Aboutus from "../components/Aboutus";
+import { getCity } from "../services/getCity";
+import Loader from "../components/Loader";
+// import { getLocations } from "../services/getLocations";
+import { fetchFamousPlaces } from "../services/OpenTripMap";
+import { getLocations } from "../services/getLocations";
 
 const StyledHomepage = styled.div`
   text-align: center;
@@ -72,35 +76,62 @@ const StyledPlaceBox = styled.div`
 
 function Homepage() {
   const popular_places = useRef(null);
+  const [searchResult, setSearchResult] = useState({});
+  const [loading, setLoading] = useState(false);
 
+  // card horizontal scrolling on homepage
   function handleScroll(e) {
     popular_places.current.scrollLeft += e.deltaY * 5;
+  }
+  async function handleSearch(city) {
+    try {
+      setLoading(true);
+      const cityObj = await getCity(city);
+      const locations = await getLocations(city);
+      console.log("locations", locations);
+      setSearchResult(cityObj);
+    } catch (error) {
+      console.error("Error searching city", error);
+    } finally {
+      setLoading(false);
+    }
   }
   return (
     <StyledHomepage>
       <h2 className="homepage-heading">
         Hey <span>Aman!</span> Where to?
       </h2>
-      <Searchbox />
-      <Aboutus />
-      <StyledPopularPlacesContainer>
-        <h3 className="popular-places-heading">Popular Places</h3>
-        <div
-          className="popular-places-boxes"
-          onWheel={handleScroll}
-          ref={popular_places}
-        >
-          {placesData.map((item, key) => {
-            return (
-              <StyledPlaceBox key={key} $img={item.img}>
-                <p>
-                  {item.name}, {item.state}
-                </p>
-              </StyledPlaceBox>
-            );
-          })}
-        </div>
-      </StyledPopularPlacesContainer>
+      <Searchbox
+        onSearch={handleSearch}
+        searchResult={searchResult}
+        loading={loading}
+      />
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          {console.log(searchResult)}
+          <Aboutus />
+          <StyledPopularPlacesContainer>
+            <h3 className="popular-places-heading">Popular Places</h3>
+            <div
+              className="popular-places-boxes"
+              onWheel={handleScroll}
+              ref={popular_places}
+            >
+              {placesData.map((item, key) => {
+                return (
+                  <StyledPlaceBox key={key} $img={item.img}>
+                    <p>
+                      {item.name}, {item.state}
+                    </p>
+                  </StyledPlaceBox>
+                );
+              })}
+            </div>
+          </StyledPopularPlacesContainer>
+        </>
+      )}
     </StyledHomepage>
   );
 }
