@@ -44,6 +44,29 @@ const getCityCoordinates = async (city) => {
 };
 
 export const fetchFamousPlaces = async (city) => {
+<<<<<<< HEAD
+    try {
+        const { lon, lat } = await getCityCoordinates(city);
+        const placesData = await getFamousPlaces(lon, lat);
+        return placesData;
+    } catch (error) {
+        console.error('Error fetching famous places:', error);
+        throw error;
+    }
+};
+
+export const fetchPlaceDetails = async (xid) => {
+    try {
+        const response = await axios.get('/api/places/place-details', {
+            params: { xid }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching place details:', error);
+        throw error;
+    }
+};
+=======
   try {
     const { lon, lat } = await getCityCoordinates(city);
     const placesData = await getFamousPlaces(lon, lat);
@@ -53,3 +76,4 @@ export const fetchFamousPlaces = async (city) => {
     throw error;
   }
 };
+>>>>>>> ef9683b669f74a3903763371df621de8e3f99ea3
